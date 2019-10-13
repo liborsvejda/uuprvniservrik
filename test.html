@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Počet požadavků</title>
+    <script>
+        function showReqNum() {
+            fetch("http://localhost:8888/api/reqnum").then(function(response) {
+                response.text().then(function(text) {
+                    let obj = JSON.parse(text);
+                    document.getElementById("pocpoz").innerHTML = obj.numberOfRequests;
+                });
+            });
+        }
+    </script>
+</head>
+<body>
+
+Počet požadavků: <b id="pocpoz"></b> <input type="button" value="Zavolej službu" onclick="showReqNum()">
+
+</body>
+</html>
