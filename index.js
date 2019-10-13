@@ -22,7 +22,7 @@ http.createServer((req, res) => {
     } else if (req.url.startsWith("/api/")) {
         res.writeHead(200, {
             "Content-type": "application/json",
-            "Access-Control-Allow-Origin": "*"
+            //"Access-Control-Allow-Origin": "*"
         });
         let obj = {};
         if (req.url === "/api/appinfo") {
