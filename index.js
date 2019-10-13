@@ -1,4 +1,5 @@
 const http = require('http');
+const fs = require('fs');
 
 const PORT = 8888;
 const VERSION = "0.0.1";
@@ -12,7 +13,13 @@ http.createServer((req, res) => {
         return;
     }
     numReq++;
-    if (req.url.startsWith("/api/")) {
+    if (req.url === "/") {
+        fs.readFile('index.html', function(err, data) {
+            res.writeHead(200, {'Content-Type': 'text/html'});
+            res.write(data);
+            res.end();
+        });
+    } else if (req.url.startsWith("/api/")) {
         res.writeHead(200, {
             "Content-type": "application/json",
             "Access-Control-Allow-Origin": "*"
